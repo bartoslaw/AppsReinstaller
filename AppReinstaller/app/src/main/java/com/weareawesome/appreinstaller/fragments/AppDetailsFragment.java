@@ -19,6 +19,8 @@ import butterknife.OnClick;
 
 public class AppDetailsFragment extends Fragment {
 
+    public final static String TAG = AppDetailsFragment.class.getSimpleName();
+
     private ApkInstaller apkInstaller;
     private ApkDownloader apkDownloader;
 
