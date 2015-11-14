@@ -3,4 +3,6 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="url_input_hint">Please provide url to .apk file</string>
+    <string name="reinstall_app_button_cta">Reinstall app</string>
 </resources>

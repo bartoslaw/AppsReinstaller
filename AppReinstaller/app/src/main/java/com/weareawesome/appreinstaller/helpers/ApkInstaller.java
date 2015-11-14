@@ -16,6 +16,7 @@ public class ApkInstaller {
     }
 
     public void deinstall(Context cntx, String packageName) {
+        //todo maybe it's not event needed? we need to test if just reinstalling works fine
         Intent intent = new Intent(Intent.ACTION_DELETE);
         intent.setData(Uri.parse("package:" + packageName));
         cntx.startActivity(intent);

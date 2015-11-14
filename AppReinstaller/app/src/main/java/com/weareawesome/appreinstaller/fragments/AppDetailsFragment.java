@@ -6,12 +6,31 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.weareawesome.appreinstaller.R;
+import com.weareawesome.appreinstaller.helpers.ApkDownloader;
+import com.weareawesome.appreinstaller.helpers.ApkInstaller;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class AppDetailsFragment extends Fragment {
+
+    private ApkInstaller apkInstaller;
+    private ApkDownloader apkDownloader;
+
+    @Bind(R.id.fragment_details_url_input)
+    EditText urlEditText;
+
+    @OnClick(R.id.fragment_details_install_button)
+    public void onReinstallButtonClicked() {
+        if (!urlEditText.getText().toString().isEmpty())
+            Toast.makeText(getActivity(), "You need to specify url.", Toast.LENGTH_SHORT).show();
+        else reinstallApp();
+    }
 
     @Nullable
     @Override
@@ -24,6 +43,7 @@ public class AppDetailsFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        initVariables();
     }
 
     @Override
@@ -32,7 +52,17 @@ public class AppDetailsFragment extends Fragment {
         ButterKnife.unbind(this);
     }
 
-    private void reinstallApp() {
+    private void initVariables() {
+        apkDownloader = new ApkDownloader();
+        apkInstaller = new ApkInstaller();
+    }
 
+    private void reinstallApp() {
+        apkDownloader.downloadApk(getActivity(), urlEditText.getText().toString(), new ApkDownloader.DownloadListener() {
+            @Override
+            public void onDownloaded(String pathToApk) {
+                apkInstaller.install(getActivity(), pathToApk);
+            }
+        });
     }
 }
