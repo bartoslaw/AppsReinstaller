@@ -12,6 +12,7 @@ import java.io.IOException;
 import cz.msebera.android.httpclient.Header;
 
 public class ApkDownloader {
+
     public interface DownloadListener {
         void onDownloaded(String pathToApk);
     }
