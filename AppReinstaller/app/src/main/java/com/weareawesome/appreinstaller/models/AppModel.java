@@ -1,14 +1,22 @@
 package com.weareawesome.appreinstaller.models;
 
+import android.graphics.drawable.Drawable;
+
 public class AppModel {
 
     private String packageName;
     private String name;
-    private Object icon;
+    private Drawable icon;
 
-    public AppModel(String packageName, String name, Object icon) {
+    public void setPackageName(String packageName) {
         this.packageName = packageName;
+    }
+
+    public void setName(String name) {
         this.name = name;
+    }
+
+    public void setIcon(Drawable icon) {
         this.icon = icon;
     }
 
@@ -20,7 +28,7 @@ public class AppModel {
         return name;
     }
 
-    public Object getIcon() {
+    public Drawable getIcon() {
         return icon;
     }
 }
