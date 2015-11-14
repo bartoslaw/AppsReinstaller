@@ -24,7 +24,9 @@ public class ApkDownloader {
             throw new RuntimeException("You need to specify url");
 
         AsyncHttpClient client = new AsyncHttpClient();
-        client.get(cntx, url, new BinaryHttpResponseHandler() {
+        client.setBasicAuth("", ""); //put here needed auth data but please do not commit this data to repo
+        String[] allowedTypes = { ".*" };
+        client.get(cntx, url, new BinaryHttpResponseHandler(allowedTypes) {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] binaryData) {
                 //todo we should decide upon what we should name .apk files

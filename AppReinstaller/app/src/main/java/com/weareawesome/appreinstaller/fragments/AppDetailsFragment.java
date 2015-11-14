@@ -29,7 +29,7 @@ public class AppDetailsFragment extends Fragment {
 
     @OnClick(R.id.fragment_details_install_button)
     public void onReinstallButtonClicked() {
-        if (!urlEditText.getText().toString().isEmpty())
+        if (urlEditText.getText().toString().isEmpty())
             Toast.makeText(getActivity(), "You need to specify url.", Toast.LENGTH_SHORT).show();
         else reinstallApp();
     }
@@ -57,6 +57,8 @@ public class AppDetailsFragment extends Fragment {
     private void initVariables() {
         apkDownloader = new ApkDownloader();
         apkInstaller = new ApkInstaller();
+
+        urlEditText.setText("");
     }
 
     private void reinstallApp() {
